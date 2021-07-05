@@ -38,6 +38,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().authorizeRequests().antMatchers("/**").permitAll().anyRequest().authenticated().and()
 				.exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		logger.info("END");
+		
+		http.headers().frameOptions().disable();
 
 	}
 
