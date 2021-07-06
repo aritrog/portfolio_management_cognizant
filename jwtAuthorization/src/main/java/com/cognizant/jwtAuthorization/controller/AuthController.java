@@ -25,24 +25,14 @@ import com.cognizant.jwtAuthorization.service.AdminDetailsService;
 public class AuthController {
 	private static Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-	/**
-	 * This is a private field of type JwtUtil class which provides the
-	 * utilities for the token like get token, validate token, expiration time etc.
-	 */
+	
 	@Autowired
 	private JwtUtil jwtutil;
 	
-	/**
-	 * This is a private field of type AdminDetailsService class which is
-	 * used to fetch the user credentials from the database
-	 */	
+	
 	@Autowired
 	private AdminDetailsService adminDetailService;
 
-	/**
-	 * This method is used to check the login credentials, if there are valid,
-	 * by checking against the database.
-	 */		
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody UserData userlogincredentials) {
@@ -64,11 +54,7 @@ public class AuthController {
 		}
 	}
 	
-	/**
-	 * This method validates the token {see @JwtUtils}
-	 * @param token
-	 * @return
-	 */
+	
 
 	@GetMapping("/validate")
 	public ResponseEntity<?> getValidity(@RequestHeader("Authorization") String token) {
