@@ -20,7 +20,6 @@ public class JwtUtil {
 
 	private String secretkey = "${jwt.secret}";
 
-	
 	public String extractUsername(String token) {
 		logger.info("START");
 		logger.info("END");
@@ -29,7 +28,6 @@ public class JwtUtil {
 
 	}
 
-	
 	public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
 		logger.info("START");
 
@@ -40,7 +38,7 @@ public class JwtUtil {
 
 	}
 
-	
+
 	private Claims extractAllClaims(String token) {
 		logger.info("START");
 		logger.info("END");
@@ -59,6 +57,7 @@ public class JwtUtil {
 		return createToken(claims, userDetails.getUsername());
 	}
 
+
 	private String createToken(Map<String, Object> claims, String subject) {
 		logger.info("START");
 
@@ -71,7 +70,7 @@ public class JwtUtil {
 		return compact;
 	}
 
-	
+
 	public Boolean validateToken(String token) {
 		logger.info("START");
 
