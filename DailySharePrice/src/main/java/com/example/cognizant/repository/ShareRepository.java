@@ -7,5 +7,7 @@ import com.example.cognizant.model.ShareDetails;
 
 @Repository
 public interface ShareRepository extends JpaRepository<ShareDetails, String> {
+	
 	public ShareDetails findByShareId(String shareId);
+	
 }
