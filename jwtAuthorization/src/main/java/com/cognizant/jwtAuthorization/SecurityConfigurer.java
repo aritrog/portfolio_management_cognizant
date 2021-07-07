@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 import com.cognizant.jwtAuthorization.service.AdminDetailsService;
 
-
+@Configuration
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	private static Logger logger = LoggerFactory.getLogger(SecurityConfigurer.class);
@@ -31,17 +32,26 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		logger.info("START");
+	// @Override
+	// protected void configure(HttpSecurity http) throws Exception {
+	// 	logger.info("START");
 
-		http.csrf().disable().authorizeRequests().antMatchers("/**").permitAll().anyRequest().authenticated().and()
-				.exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		logger.info("END");
-		
-		http.headers().frameOptions().disable();
+	// 	http.csrf().disable().authorizeRequests().antMatchers("/**").permitAll().anyRequest().authenticated().and()
+	// 			.exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	// 	logger.info("END");
 
-	}
+	// }
+
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().antMatchers("/").permitAll().and()
+                .authorizeRequests().antMatchers("/console/**").permitAll();
+
+        httpSecurity.csrf().disable();
+        httpSecurity.headers().frameOptions().disable();
+    }
+
+
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {

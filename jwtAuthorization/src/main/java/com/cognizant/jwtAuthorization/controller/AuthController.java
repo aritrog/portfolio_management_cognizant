@@ -17,19 +17,15 @@ import com.cognizant.jwtAuthorization.model.UserData;
 import com.cognizant.jwtAuthorization.service.JwtUtil;
 import com.cognizant.jwtAuthorization.service.AdminDetailsService;
 
-/**
- * This class is having all the endpoints related to authorization purpose. For
- * getting the token and validating the token this class will be used.
- */
+
 @RestController
 public class AuthController {
 	private static Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-	
+
 	@Autowired
 	private JwtUtil jwtutil;
-	
-	
+
 	@Autowired
 	private AdminDetailsService adminDetailService;
 
@@ -37,7 +33,7 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody UserData userlogincredentials) {
         logger.info("START");
-        System.out.println(userlogincredentials.getUserid()+""+userlogincredentials.getUpassword());
+        System.out.println(userlogincredentials.getUserid()+"  "+userlogincredentials.getUpassword());
         final UserDetails userdetails = adminDetailService.loadUserByUsername(userlogincredentials.getUserid());
         System.out.println(userdetails.getPassword()+""+userdetails.getUsername());
 		String uid = "";
@@ -53,8 +49,6 @@ public class AuthController {
 			return new ResponseEntity<>("Not Accesible", HttpStatus.FORBIDDEN);
 		}
 	}
-	
-	
 
 	@GetMapping("/validate")
 	public ResponseEntity<?> getValidity(@RequestHeader("Authorization") String token) {
