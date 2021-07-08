@@ -17,6 +17,12 @@ public class StockController {
 	@Autowired
 	private AssestService assetservice;
 	
+	@Autowired
+	private ShareDetailsFiegn shareDetailsFiegn;
+	
+	@Autowired
+	private MutualFundDetailsFeign mutualFundFeign;
+	
 	@GetMapping("/test")
 	public String test() {
 		return "DONE...READY";
@@ -47,10 +53,24 @@ public class StockController {
 			}
 		}
 		
-		System.out.println(stockList);
+		if (!stockList.isEmpty()) {
+			stockValueList = shareDetailsFiegn.finddailyShareById(stockList);
+		}
 		
-
-		return 10.00;
+		System.out.println("***********************"+stockList);
+		System.out.println("***********************//////"+stockValueList);
+		
+		if (!mutualFundList.isEmpty()) {
+			mutualFundValueList = mutualFundFeign.getMutualDetailsById(mutualFundList);
+		}
+		System.out.println("***********************"+mutualFundList);
+		System.out.println("***********************//////"+mutualFundValueList);
+		
+		
+		
+		
+		
+		return networth;
 	}
 	
 	

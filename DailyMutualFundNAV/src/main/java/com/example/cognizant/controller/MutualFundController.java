@@ -1,5 +1,7 @@
 package com.example.cognizant.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,4 +22,11 @@ public class MutualFundController {
 		return service.getMutualFundByName(mutualFundName);
 	}
 	
+	@GetMapping("/dailyMutualFundNav/{mutualFundId}")
+	public List<Double> getDailyMutualFundNavById(@PathVariable(value="mutualFundId") List<String> mutualFundIdList) {
+		
+			return service.getMutualFundByIdList(mutualFundIdList);
+		
+		
+	}
 }

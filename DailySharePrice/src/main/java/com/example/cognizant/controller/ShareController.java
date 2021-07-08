@@ -1,5 +1,7 @@
 package com.example.cognizant.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,5 +24,13 @@ public class ShareController {
 
 			return service.getSharebyId(shareId);
 
+	}
+	
+	@GetMapping("/dailySharePrice/{shareId}")
+	public List<Double> getDailySharePriceByIDList(@PathVariable(value="shareId") List<String> shareId){
+		
+			return service.getSharebyId(shareId);
+		
+		
 	}
 }
