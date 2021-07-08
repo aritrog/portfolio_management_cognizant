@@ -3,6 +3,10 @@ package com.example.cognizant.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,7 @@ import com.example.cognizant.service.AssestService;
 
 @RestController
 public class StockController {
+	Logger logger = LoggerFactory.getLogger(StockController.class);
 	
 	@Autowired
 	private AssestService assetservice;
@@ -25,6 +30,7 @@ public class StockController {
 	
 	@GetMapping("/test")
 	public String test() {
+		logger.info("Hey there Reached  /test");
 		return "DONE...READY";
 	}
 	
@@ -57,14 +63,15 @@ public class StockController {
 			stockValueList = shareDetailsFiegn.finddailyShareById(stockList);
 		}
 		
-		System.out.println("***********************"+stockList);
-		System.out.println("***********************//////"+stockValueList);
+		logger.info("stockList!! HERE");
+		logger.info("stockValueList!! HERE");
+		
 		
 		if (!mutualFundList.isEmpty()) {
 			mutualFundValueList = mutualFundFeign.getMutualDetailsById(mutualFundList);
 		}
-		System.out.println("***********************"+mutualFundList);
-		System.out.println("***********************//////"+mutualFundValueList);
+		logger.info("mutualFundList!! HERE");
+		logger.info("mutualFundValueList!! HERE");
 		
 		
 		
