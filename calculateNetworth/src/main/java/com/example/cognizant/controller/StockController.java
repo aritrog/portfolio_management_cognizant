@@ -57,16 +57,26 @@ public class StockController {
 			stockValueList = shareDetailsFiegn.finddailyShareById(stockList);
 		}
 		
-		System.out.println("***********************"+stockList);
-		System.out.println("***********************//////"+stockValueList);
+//		System.out.println("***********************"+stockList);
+//		System.out.println("***********************//////"+stockValueList);
 		
 		if (!mutualFundList.isEmpty()) {
 			mutualFundValueList = mutualFundFeign.getMutualDetailsById(mutualFundList);
 		}
-		System.out.println("***********************"+mutualFundList);
-		System.out.println("***********************//////"+mutualFundValueList);
+//		System.out.println("***********************"+mutualFundList);
+//		System.out.println("***********************//////"+mutualFundValueList);
 		
 		
+		int stockCounter = 0, mfCounter = 0;
+		for (Asset a : allAssets) {
+			if (a.getAssetType().equals("share")) {
+				networth += Integer.parseInt(a.getUnits())  * stockValueList.get(stockCounter);
+				stockCounter++;
+			} else {
+				networth += Integer.parseInt(a.getUnits()) * mutualFundValueList.get(mfCounter);
+				mfCounter++;
+			}
+		}
 		
 		
 		
