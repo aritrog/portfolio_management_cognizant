@@ -2,7 +2,7 @@ package com.example.cognizant.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +10,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cognizant.model.Asset;
+import com.example.cognizant.model.SellMap;
 import com.example.cognizant.service.AssestService;
+import com.example.cognizant.service.SellAssetService;
 
 @RestController
 public class StockController {
@@ -27,6 +31,9 @@ public class StockController {
 	
 	@Autowired
 	private MutualFundDetailsFeign mutualFundFeign;
+	
+	@Autowired
+	private SellAssetService sellService;
 	
 	@GetMapping("/test")
 	public String test() {
@@ -92,6 +99,21 @@ public class StockController {
 		
 		
 		return networth;
+	}
+	
+	@PostMapping("/SellAssets")
+	public double calculateBalancePostSellPerStock(@RequestBody SellMap sell) {
+		
+		Map<String, Integer> stockIdList = sell.getStockIdList();
+		Map<String, Integer> mfIdList = sell.getMfAssetList();
+		if (!stockIdList.isEmpty()) {
+			sellService.deleteStockAssetWithUnits(sell.getId(), stockIdList);
+		}
+		if (!mfIdList.isEmpty()) {
+			sellService.deleteMutualFundAssetWithUnits(sell.getId(), mfIdList);
+		}
+		
+		return getAsset(sell.getId());
 	}
 	
 	

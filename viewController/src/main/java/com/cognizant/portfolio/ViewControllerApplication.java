@@ -1,4 +1,4 @@
-package com.cognizant.viewController.viewController;
+package com.cognizant.portfolio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

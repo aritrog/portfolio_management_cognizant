@@ -11,5 +11,7 @@ import com.example.cognizant.model.Asset;
 public interface AssetRepository extends JpaRepository<Asset, Integer>{
 
 	List<Asset> findByUserId(int userId);
+	
+	public Asset findByUserIdAndAssetIdAndAssetType(int Id,String assetId,String type);
 
 }
