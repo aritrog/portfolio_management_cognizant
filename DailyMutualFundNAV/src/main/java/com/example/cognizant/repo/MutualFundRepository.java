@@ -15,7 +15,7 @@ public interface MutualFundRepository extends JpaRepository<MutualFundDetails, S
 	
 	public MutualFundDetails findByMutualFundId(String mutualFundId);
 	
-	 @Query("SELECT m FROM MutualFundDetails m WHERE m.mutualFundId IN (:mutualFundIdList) order by m.mutualFundId")
-		public List<MutualFundDetails> findByMutualFundId(@Param("mutualFundIdList") List<String> mutualFundIdList);
+	@Query("SELECT m FROM MutualFundDetails m WHERE m.mutualFundId IN (:mutualFundIdList) order by m.mutualFundId")
+	public List<MutualFundDetails> findByMutualFundId(@Param("mutualFundIdList") List<String> mutualFundIdList);
 	
 }

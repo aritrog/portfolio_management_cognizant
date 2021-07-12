@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.cognizant.model.MutualFundDetails;
 import com.example.cognizant.service.MutualFundService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class MutualFundController {
 	
 	@Autowired
@@ -19,6 +22,7 @@ public class MutualFundController {
 	
 	@GetMapping("/dailyMutualFundNav/name/{mutualFundName}")
 	public MutualFundDetails getDailyMutualFundNav(@PathVariable String mutualFundName) {
+		log.info("fetching Mutual fund details of the given Fund ID...");
 		return service.getMutualFundByName(mutualFundName);
 	}
 	
