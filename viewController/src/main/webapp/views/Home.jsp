@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -71,9 +70,8 @@
                 <div class="row">
                     <div class="col">
                         <center>
-                            <p class="p-4 pr-5">Copyrights <a href="https://getbootstrap.com/"
-                                    class="text-white">Cognizant</a>, by <a href="https://twitter.com/mdo"
-                                    class="text-white">@CodeCrunchers</a>.</p>
+                            <p class="p-4 pr-5">Copyrights <a href="https://getbootstrap.com/" class="text-white">Cognizant</a>, by <a
+                                    href="https://twitter.com/mdo" class="text-white">@CodeCrunchers</a>.</p>
                         </center>
                     </div>
                 </div>
