@@ -4,7 +4,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.cognizant.controller.AuthClient;
 import com.example.cognizant.model.Asset;
+import com.example.cognizant.model.AuthResponse;
 import com.example.cognizant.repository.AssetRepository;
 
 
@@ -14,7 +16,8 @@ public class SellAssetService {
 	@Autowired
 	private AssetRepository repository;
 	
-	
+	@Autowired
+	private AuthClient authClient;
 	
 	public void deleteStockAssetWithUnits(int Id,Map<String,Integer> idList) {
 		for(String id:idList.keySet()) {
@@ -43,5 +46,14 @@ public class SellAssetService {
 				repository.delete(a);
 			}
 			}
+	}
+	
+	public Boolean isSessionValid(String token) {
+		try {
+			AuthResponse authResponse = authClient.getValidity(token);
+		} catch (Exception e) {
+			return false;
+		} 
+		return true;
 	}
 }

@@ -31,6 +31,5 @@ public class ShareController {
 		
 			return service.getSharebyId(shareId);
 		
-		
 	}
 }

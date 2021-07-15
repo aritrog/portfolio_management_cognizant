@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SellMap {
 
-	int id;
+	int pid;
 
 	Map<String,Integer> stockIdList;
 

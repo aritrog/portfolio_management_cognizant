@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cognizant.model.Asset;
@@ -42,16 +43,18 @@ public class StockController {
 	}
 	
 	@GetMapping("/GetAllAssets/{userId}")
-	public List<Asset> getAllAssets(@PathVariable(value = "userId") int userId) {
-		
+	public List<Asset> getAllAssets(@RequestHeader("Authorization") String token,@PathVariable(value = "userId") int userId) {
+		if(sellService.isSessionValid(token)) {
 			return assetservice.getAllAssetForUser(userId);
-		
+		}
+		return null;
 	}
 	
 	@GetMapping("/calculateNetworth/{userId}")
-	public double getAsset(@PathVariable(value = "userId") int userId) 
+	public double getAsset(@RequestHeader("Authorization") String token,@PathVariable(value = "userId") int userId) 
 	{
 		double networth = 0.0;
+		if(sellService.isSessionValid(token)) {
 		List<String> stockList = new ArrayList<>();
 		List<String> mutualFundList = new ArrayList<>();
 		List<Double> stockValueList = new ArrayList<>();
@@ -97,23 +100,23 @@ public class StockController {
 		}
 		
 		
-		
+		}
 		return networth;
 	}
 	
 	@PostMapping("/SellAssets")
-	public double calculateBalancePostSellPerStock(@RequestBody SellMap sell) {
-		
+	public double calculateBalancePostSellPerStock(@RequestHeader("Authorization") String token,@RequestBody SellMap sell) {
+		if(sellService.isSessionValid(token)) {
 		Map<String, Integer> stockIdList = sell.getStockIdList();
 		Map<String, Integer> mfIdList = sell.getMfAssetList();
 		if (!stockIdList.isEmpty()) {
-			sellService.deleteStockAssetWithUnits(sell.getId(), stockIdList);
+			sellService.deleteStockAssetWithUnits(sell.getPid(), stockIdList);
 		}
 		if (!mfIdList.isEmpty()) {
-			sellService.deleteMutualFundAssetWithUnits(sell.getId(), mfIdList);
+			sellService.deleteMutualFundAssetWithUnits(sell.getPid(), mfIdList);
 		}
-		
-		return getAsset(sell.getId());
+		}
+		return getAsset(token,sell.getPid());
 	}
 	
 	

@@ -27,5 +27,7 @@ public class ShareService {
 		return shareValueList;
 	}
 	
+
+	
 	
 }

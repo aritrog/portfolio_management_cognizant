@@ -15,7 +15,7 @@
 			<img src="img/bg1.jpg">
 		</div>
 		<div class="login-content">
-			<form action="index.html">
+			<form action="/alogin" method="POST" model="userData" name="loginform">
 				<img src="img/avatar.svg">
 				<h2 class="title">Welcome</h2>
            		<div class="input-div one">
@@ -24,7 +24,7 @@
            		   </div>
            		   <div class="div">
            		   		<!-- <h5>Username</h5> -->
-           		   		<input type="text" class="input" placeholder="Username">
+           		   		<input type="text" class="input" id="inputName" name="userid" placeholder="User Id" required>
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -33,11 +33,12 @@
            		   </div>
            		   <div class="div">
            		    	<!-- <h5>Password</h5>  -->
-           		    	<input type="password" class="input" placeholder="Password">
+           		    	<input type="password" class="input" id="inputPassword" name="upassword" placeholder="Password" required>
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
-            	<input type="submit" class="btn" value="Login">
+            	<input type="submit" name="submit" class="btn" value="Login">
+            	<div class="text-center d-flex justify-content-between mt-4" style="color: red"><p>${errormsg}</u></p></div>
             </form>
         </div>
     </div>
