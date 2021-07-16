@@ -8,11 +8,13 @@ import com.example.cognizant.controller.AuthClient;
 import com.example.cognizant.model.Asset;
 import com.example.cognizant.model.AuthResponse;
 import com.example.cognizant.repository.AssetRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Service
 public class SellAssetService {
-	
+	Logger logger = LoggerFactory.getLogger(SellAssetService.class);
 	@Autowired
 	private AssetRepository repository;
 	
@@ -20,10 +22,12 @@ public class SellAssetService {
 	private AuthClient authClient;
 	
 	public void deleteStockAssetWithUnits(int Id,Map<String,Integer> idList) {
+		
+		logger.info("in SellAssetService class in deleteStockAssetWithUnits method");
 		for(String id:idList.keySet()) {
 		Asset a = repository.findByUserIdAndAssetIdAndAssetType(Id,id,"share");
 		int units=Integer.parseInt(a.getUnits())-idList.get(id);
-//		String sunits = Integer.toString(units);
+
 		if(units>0) {
 			a.setUnits(Integer.toString(units));
 			repository.save(a);
@@ -35,6 +39,7 @@ public class SellAssetService {
 	}
 	
 	public void deleteMutualFundAssetWithUnits(int Id,Map<String, Integer> mfIdList) {
+		logger.info("in SellAssetService class in deleteMutualFundAssetWithUnits method");
 		for(String id:mfIdList.keySet()) {
 			Asset a = repository.findByUserIdAndAssetIdAndAssetType(Id,id,"mutual");
 			int units=Integer.parseInt(a.getUnits())-mfIdList.get(id);

@@ -13,4 +13,5 @@ public class MutualFundDetails {
 
 	private double mutualFundValue;
 
+	
 }

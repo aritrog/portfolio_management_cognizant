@@ -15,4 +15,6 @@ public class StockDetails {
 	private double shareValue;
 
 
+
+
 }

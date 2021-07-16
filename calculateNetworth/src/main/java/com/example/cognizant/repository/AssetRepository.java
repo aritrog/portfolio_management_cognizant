@@ -7,8 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.example.cognizant.model.Asset;
 
+
+
 @Repository
 public interface AssetRepository extends JpaRepository<Asset, Integer>{
+	
+
 
 	List<Asset> findByUserId(int userId);
 	

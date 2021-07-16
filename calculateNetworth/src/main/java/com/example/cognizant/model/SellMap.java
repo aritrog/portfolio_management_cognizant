@@ -16,6 +16,6 @@ public class SellMap {
 	Map<String,Integer> stockIdList;
 
 	Map<String,Integer> mfAssetList;
-
+    
 
 }

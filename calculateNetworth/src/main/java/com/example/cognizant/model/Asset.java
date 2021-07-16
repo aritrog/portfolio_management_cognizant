@@ -8,12 +8,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Asset {
+	
+	
+	
 	@Id
 	private String assetId;
 	private int userId;
