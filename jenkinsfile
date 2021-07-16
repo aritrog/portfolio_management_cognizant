@@ -27,7 +27,7 @@ pipeline {
              
               steps {
                 parallel(
-                    DailySharePrice : {bat "cd DailySharePrice && mvn package"}
+                    DailySharePrice : {bat "cd DailySharePrice && mvn package"},
                     DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn package"}
                )
         }
