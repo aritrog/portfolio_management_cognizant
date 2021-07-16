@@ -7,19 +7,19 @@ pipeline {
     stages {
         stage('Compile stage') {
             steps {
-                bat "mvn clean compile" 
+                bat "cd DailySharePrice && mvn clean compile" 
         }
     }
 
          stage('testing stage') {
              steps {
-                bat "mvn test"
+                bat "cd DailySharePrice && mvn test"
         }
     }
 
           stage('deployment stage') {
               steps {
-                bat "mvn deploy"
+                bat "cd DailySharePrice && mvn deploy"
         }
     }
 
