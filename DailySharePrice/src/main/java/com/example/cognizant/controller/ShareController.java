@@ -10,13 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.cognizant.model.ShareDetails;
 import com.example.cognizant.service.ShareService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RestController
 public class ShareController {
-	Logger logger = LoggerFactory.getLogger(ShareController.class);
-
+	
 	@Autowired
 	private ShareService service;
 	
@@ -24,7 +21,6 @@ public class ShareController {
 	
 	@GetMapping("/dailySharePrice/name/{shareId}")
 	public ShareDetails getDailySharePrice(@PathVariable String shareId){
-		logger.info("In getDailySharePrice Method - ShareController");
 
 			return service.getSharebyId(shareId);
 
@@ -32,8 +28,7 @@ public class ShareController {
 	
 	@GetMapping("/dailySharePrice/{shareId}")
 	public List<Double> getDailySharePriceByIDList(@PathVariable(value="shareId") List<String> shareId){
-		logger.info("In getDailySharePriceByIDList Method - ShareController");
-
+		
 			return service.getSharebyId(shareId);
 		
 	}

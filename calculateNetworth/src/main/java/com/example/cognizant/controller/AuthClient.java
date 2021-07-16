@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import com.example.cognizant.model.AuthResponse;
 
 @FeignClient(name = "authorization-service", url = "http://localhost:9095")

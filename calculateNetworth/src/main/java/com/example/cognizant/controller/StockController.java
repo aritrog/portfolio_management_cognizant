@@ -38,13 +38,12 @@ public class StockController {
 	
 	@GetMapping("/test")
 	public String test() {
-		logger.info("In StockController Class at test() method");
+		logger.info("Hey there Reached  /test");
 		return "DONE...READY";
 	}
 	
 	@GetMapping("/GetAllAssets/{userId}")
 	public List<Asset> getAllAssets(@RequestHeader("Authorization") String token,@PathVariable(value = "userId") int userId) {
-		logger.info("In StockController Class at getAllAssets() method");
 		if(sellService.isSessionValid(token)) {
 			return assetservice.getAllAssetForUser(userId);
 		}
@@ -54,7 +53,6 @@ public class StockController {
 	@GetMapping("/calculateNetworth/{userId}")
 	public double getAsset(@RequestHeader("Authorization") String token,@PathVariable(value = "userId") int userId) 
 	{
-		logger.info("In StockController Class at getAsset() method");
 		double networth = 0.0;
 		if(sellService.isSessionValid(token)) {
 		List<String> stockList = new ArrayList<>();
@@ -68,15 +66,28 @@ public class StockController {
 				stockList.add(a.getAssetId());
 			} else {
 				mutualFundList.add(a.getAssetId());
-				}
+			}
 		}
 		
 		if (!stockList.isEmpty()) {
 			stockValueList = shareDetailsFiegn.finddailyShareById(stockList);
 		}
+		
+
+//		System.out.println("***********************"+stockList);
+//		System.out.println("***********************//////"+stockValueList);
+
+		
 		if (!mutualFundList.isEmpty()) {
 			mutualFundValueList = mutualFundFeign.getMutualDetailsById(mutualFundList);
 		}
+
+//		System.out.println("***********************"+mutualFundList);
+//		System.out.println("***********************//////"+mutualFundValueList);
+
+
+		
+		
 		int stockCounter = 0, mfCounter = 0;
 		for (Asset a : allAssets) {
 			if (a.getAssetType().equals("share")) {
@@ -88,13 +99,13 @@ public class StockController {
 			}
 		}
 		
+		
 		}
 		return networth;
 	}
 	
 	@PostMapping("/SellAssets")
 	public double calculateBalancePostSellPerStock(@RequestHeader("Authorization") String token,@RequestBody SellMap sell) {
-		logger.info("In StockController Class at calculateBalancePostSellPerStock() method");
 		if(sellService.isSessionValid(token)) {
 		Map<String, Integer> stockIdList = sell.getStockIdList();
 		Map<String, Integer> mfIdList = sell.getMfAssetList();
