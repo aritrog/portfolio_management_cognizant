@@ -12,7 +12,6 @@ pipeline {
                     DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn clean compile"},
                     calculateNetworth : {bat "cd calculateNetworth && mvn clean compile"},
                     authorizationService : {bat "cd authorizationService && mvn clean compile"},
-                    discovery-service : {bat "cd discovery-service && mvn clean compile"},
                     viewController : {bat "cd viewController && mvn clean compile"}
                 )
         }
@@ -24,8 +23,7 @@ pipeline {
                    DailySharePrice : {bat "cd DailySharePrice && mvn test"},
                    DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn test"},
                    calculateNetworth : {bat "cd calculateNetworth && mvn test"},
-                   authorizationService : {bat "cd authorizationService && mvn test"},
-                   discovery-service : {bat "cd discovery-service && mvn test"},
+                   authorizationService : {bat "cd authorizationService && mvn test"},                
                    viewController : {bat "cd viewController && mvn test"}
                 )
         }
@@ -38,8 +36,7 @@ pipeline {
                     DailySharePrice : {bat "cd DailySharePrice && mvn package"},
                     DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn package"},
                     calculateNetworth : {bat "cd calculateNetworth && mvn package"},
-                    authorizationService : {bat "cd authorizationService && mvn package"},
-                    discovery-service : {bat "cd discovery-service && mvn package"},
+                    authorizationService : {bat "cd authorizationService && mvn package"}, 
                     viewController : {bat "cd viewController && mvn package"}
                )
         }
