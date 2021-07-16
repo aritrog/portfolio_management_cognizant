@@ -12,6 +12,7 @@ pipeline {
                     DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn clean compile"},
                     calculateNetworth : {bat "cd calculateNetworth && mvn clean compile"},
                     authorizationService : {bat "cd authorizationService && mvn clean compile"},
+                    viewController : {bat "cd viewController && mvn clean compile"}
                 )
         }
     }
@@ -35,6 +36,7 @@ pipeline {
                     DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn package"},
                     calculateNetworth : {bat "cd calculateNetworth && mvn package"},
                     authorizationService : {bat "cd authorizationService && mvn package"}, 
+                    viewController : {bat "cd viewController && mvn package"}
                )
         }
     }
