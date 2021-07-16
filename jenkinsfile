@@ -7,19 +7,29 @@ pipeline {
     stages {
         stage('Compile stage') {
             steps {
-                bat "cd DailySharePrice && mvn clean compile" 
+                parallel(
+                    DailySharePrice : {bat "cd DailySharePrice && mvn clean compile" },
+                    DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn clean compile"}
+                )
         }
     }
 
          stage('testing stage') {
              steps {
-                bat "cd DailySharePrice && mvn test"
+                parallel(
+                   DailySharePrice : {bat "cd DailySharePrice && mvn test"},
+                   DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn test""}
+                )
         }
     }
 
-          stage('deployment stage') {
+          stage('packaging stage') {
+             
               steps {
-                bat "cd DailySharePrice && mvn deploy"
+                parallel(
+                    DailySharePrice : {bat "cd DailySharePrice && mvn package"}
+                    DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn package"}
+               )
         }
     }
 
