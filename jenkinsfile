@@ -23,8 +23,7 @@ pipeline {
                    DailySharePrice : {bat "cd DailySharePrice && mvn test"},
                    DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn test"},
                    calculateNetworth : {bat "cd calculateNetworth && mvn test"},
-                   authorizationService : {bat "cd authorizationService && mvn test"},                
-                   viewController : {bat "cd viewController && mvn test"}
+                   authorizationService : {bat "cd authorizationService && mvn test"}
                 )
         }
     }
