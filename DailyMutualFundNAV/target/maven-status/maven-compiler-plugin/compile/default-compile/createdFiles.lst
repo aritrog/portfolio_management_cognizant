@@ -1,0 +1,6 @@
+com\example\cognizant\DailyMutualFundNavApplication.class
+com\example\cognizant\service\MutualFundService.class
+com\example\cognizant\repo\MutualFundRepository.class
+com\example\cognizant\controller\MutualFundController.class
+com\example\cognizant\model\MutualFundDetails.class
+com\example\cognizant\SwaggerConfig.class
