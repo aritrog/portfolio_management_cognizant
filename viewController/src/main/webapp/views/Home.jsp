@@ -35,7 +35,7 @@
         <div class="container p-5">
             <div class="row p-4 ml-4">
                 <div class="col pl-5">
-                    <div class="card shadow-lg" style="width:450px">
+                    <div class="card shadow-lg" style="width:30%">
                        <!--  <img class="card-img-top"
                             src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
                             alt="Card image" style="width:100%">-->
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="col pl-5">
-                    <div class="card shadow-lg" style="width:450px">
+                    <div class="card shadow-lg" style="width:30%">
                         <!-- <img class="card-img-top"
                             src="https://images.unsplash.com/photo-1620266757065-5814239881fd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
                             alt="Card image" style="width:100%"> -->
@@ -87,7 +87,7 @@
 				<div class="col">
 					<center>
 						<p class="p-4 pr-5 ">
-							Copyright © 2021 <a href="#"
+							Copyright ï¿½ 2021 <a href="#"
 								style="text-decoration: none; color: black">| CodeCrunchers</a>.
 						</p>
 					</center>
