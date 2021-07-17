@@ -7,37 +7,19 @@ pipeline {
     stages {
         stage('Compile stage') {
             steps {
-                parallel(
-                    DailySharePrice : {bat "cd DailySharePrice && mvn clean compile" },
-                    DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn clean compile"},
-                    calculateNetworth : {bat "cd calculateNetworth && mvn clean compile"},
-                    authorizationService : {bat "cd authorizationService && mvn clean compile"},
-                    viewController : {bat "cd viewController && mvn clean compile"}
-                )
+                bat "mvn -fDailySharePrice\pom.xml clean compile" 
         }
     }
 
-         stage('Testing stage') {
+         stage('testing stage') {
              steps {
-                parallel(
-                   DailySharePrice : {bat "cd DailySharePrice && mvn test"},
-                   DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn test"},
-                   calculateNetworth : {bat "cd calculateNetworth && mvn test"},
-                   authorizationService : {bat "cd authorizationService && mvn test"}
-                )
+                bat "mvn -fDailySharePrice\pom.xml test"
         }
     }
 
-          stage('Packaging stage') {
-             
+          stage('Package stage') {
               steps {
-                parallel(
-                    DailySharePrice : {bat "cd DailySharePrice && mvn package"},
-                    DailyMutualFundNAV : {bat "cd DailyMutualFundNAV && mvn package"},
-                    calculateNetworth : {bat "cd calculateNetworth && mvn package"},
-                    authorizationService : {bat "cd authorizationService && mvn package"}, 
-                    viewController : {bat "cd viewController && mvn package"}
-               )
+                bat "mvn -fDailySharePrice\pom.xml package"
         }
     }
 
