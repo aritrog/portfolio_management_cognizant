@@ -9,7 +9,7 @@ pipeline {
             steps {
              parallel(
                 bat "mvn -fDailySharePrice/pom.xml clean compile",
-                bat "mvn -fDailyMutualFundNAV/pom.xml clean compile",
+                bat "mvn -fDailyMutualFundNAV/pom.xml clean compile"
              )
         }
     }
