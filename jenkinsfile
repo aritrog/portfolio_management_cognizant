@@ -7,19 +7,19 @@ pipeline {
     stages {
         stage('Compile stage') {
             steps {
-                bat "mvn -fDailySharePrice\pom.xml clean compile" 
+                bat "mvn -fDailySharePrice/pom.xml clean compile" 
         }
     }
 
          stage('testing stage') {
              steps {
-                bat "mvn -fDailySharePrice\pom.xml test"
+                bat "mvn -fDailySharePrice/pom.xml test"
         }
     }
 
           stage('Package stage') {
               steps {
-                bat "mvn -fDailySharePrice\pom.xml package"
+                bat "mvn -fDailySharePrice/pom.xml package"
         }
     }
 
