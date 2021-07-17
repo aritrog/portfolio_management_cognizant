@@ -7,19 +7,28 @@ pipeline {
     stages {
         stage('Compile stage') {
             steps {
-                bat "mvn -fDailySharePrice/pom.xml clean compile" 
+             parallel(
+                bat "mvn -fDailySharePrice/pom.xml clean compile",
+                bat "mvn -fDailyMutualFundNAV/pom.xml clean compile",
+             )
         }
     }
 
          stage('testing stage') {
              steps {
-                bat "mvn -fDailySharePrice/pom.xml test"
+              parallel(
+                bat "mvn -fDailySharePrice/pom.xml test",
+                bat "mvn -fDailyMutualFundNAV/pom.xml test"
+              )
         }
     }
 
           stage('package stage') {
               steps {
-                bat "mvn -fDailySharePrice/pom.xml package"
+               parallel(
+                bat "mvn -fDailySharePrice/pom.xml package",
+                bat "mvn -fDailyMutualFundNAV/pom.xml package"
+              )
         }
     }
 
