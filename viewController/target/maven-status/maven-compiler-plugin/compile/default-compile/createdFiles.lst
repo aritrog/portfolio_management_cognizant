@@ -1,0 +1,9 @@
+com\cognizant\portfolio\model\SellObjectMap.class
+com\cognizant\portfolio\model\AuthResponse.class
+com\cognizant\portfolio\Feign\CalculateNetworthFeignClient.class
+com\cognizant\portfolio\model\UserData.class
+com\cognizant\portfolio\service\WebportalService.class
+com\cognizant\portfolio\ViewControllerApplication.class
+com\cognizant\portfolio\controller\PortalController.class
+com\cognizant\portfolio\Feign\AuthClient.class
+com\cognizant\portfolio\model\Asset.class
