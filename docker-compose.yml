@@ -1,0 +1,94 @@
+version: "3.7"
+services:
+  discovery-service:
+    image: discovery-service
+    build:
+      context: EurekaDiscoveryServer
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - users-network
+
+
+  authorizationService:
+    image: authorizationService
+    build:
+      context: authorizationService
+      dockerfile: Dockerfile
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discoveryservice:9095/eureka
+    ports:
+      - "9095:9095"
+    restart: always
+    depends_on:
+      - discovery-service
+    networks:
+      - users-network
+
+  calculateNetworth:
+    image: calculateNetworth
+    build:
+      context: calculateNetworth
+      dockerfile: Dockerfile
+    ports:
+      - "9003:9003"
+    restart: always
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discoveryservice:9003/eureka
+    depends_on:
+      - discovery-service
+      - dailyMutualFundNAV
+      - dailySharePrice
+    networks:
+      - users-network
+
+  dailyMutualFundNAV:
+    image: DailyMutualFundNAV
+    build:
+      context: DailyMutualFundNAV
+      dockerfile: Dockerfile
+    ports:
+      - "9002:9002"
+    restart: always
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discoveryservice:9002/eureka
+    depends_on:
+      - discovery-service
+    networks:
+      - users-network
+
+  dailySharePrice:
+    image: DailySharePrice
+    build:
+        context: DailySharePrice
+        dockerfile: Dockerfile
+    ports:
+        - "9001:9001"
+    restart: always
+    environment:
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discoveryservice:9001/eureka
+    depends_on:
+        - discovery-service
+    networks:
+        - users-network
+    
+
+  viewController:
+    image: viewController
+    build:
+      context: viewController
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - authorizationService
+      - calculateNetworth
+    networks:
+      - users-network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  users-network:
