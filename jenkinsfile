@@ -19,7 +19,14 @@ pipeline {
 
          stage('testing stage') {
              steps {
-              
+                 parallel(
+                    DailySharePrice : {bat "mvn -fDailySharePrice/pom.xml test"},
+                    DailyMutualFundNAV : {bat "mvn -fDailyMutualFundNAV/pom.xml test"},
+                    calculateNetworth  : {bat "mvn -fcalculateNetworth/pom.xml test"},
+                    authorizationService  : {bat "mvn -fauthorizationService/pom.xml test"},
+                    viewController  : {bat "mvn -fviewController/pom.xml test"}
+                )
+                
                 bat "mvn -fDailySharePrice/pom.xml test"
               
         }
