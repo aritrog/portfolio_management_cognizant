@@ -3,7 +3,7 @@ services:
   discovery-service:
     image: discovery-service
     build:
-      context: EurekaDiscoveryServer
+      context: discovery-service
       dockerfile: Dockerfile
     ports:
       - "8761:8761"
@@ -12,8 +12,8 @@ services:
       - users-network
 
 
-  authorizationService:
-    image: authorizationService
+  authorization-service:
+    image: authorization-service
     build:
       context: authorizationService
       dockerfile: Dockerfile
@@ -27,8 +27,8 @@ services:
     networks:
       - users-network
 
-  calculateNetworth:
-    image: calculateNetworth
+  calculate-networth:
+    image: calculate-networth
     build:
       context: calculateNetworth
       dockerfile: Dockerfile
@@ -39,13 +39,13 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discoveryservice:9003/eureka
     depends_on:
       - discovery-service
-      - dailyMutualFundNAV
-      - dailySharePrice
+      - daily-mutual-fund-nav
+      - daily-share-price
     networks:
       - users-network
 
-  dailyMutualFundNAV:
-    image: DailyMutualFundNAV
+  daily-mutual-fund-nav:
+    image: daily-mutual-fund-nav
     build:
       context: DailyMutualFundNAV
       dockerfile: Dockerfile
@@ -59,8 +59,8 @@ services:
     networks:
       - users-network
 
-  dailySharePrice:
-    image: DailySharePrice
+  daily-share-price:
+    image: daily-share-price
     build:
         context: DailySharePrice
         dockerfile: Dockerfile
@@ -75,8 +75,8 @@ services:
         - users-network
     
 
-  viewController:
-    image: viewController
+  view-controller:
+    image: view-controller
     build:
       context: viewController
       dockerfile: Dockerfile
@@ -84,8 +84,8 @@ services:
       - "8080:8080"
     restart: always
     depends_on:
-      - authorizationService
-      - calculateNetworth
+      - authorization-service
+      - calculate-networth
     networks:
       - users-network
 
