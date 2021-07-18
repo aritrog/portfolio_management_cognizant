@@ -10,9 +10,9 @@ pipeline {
                 parallel(
                     DailySharePrice : {bat "mvn -fDailySharePrice/pom.xml clean compile"},
                     DailyMutualFundNAV : {bat "mvn -fDailyMutualFundNAV/pom.xml clean compile"},
-                    calculateNetworth  : {bat "mvn -fcalculateNetworth /pom.xml clean compile"},
-                    authorizationService  : {bat "mvn -fauthorizationService /pom.xml clean compile"},
-                    viewController  : {bat "mvn -fviewController /pom.xml clean compile"}
+                    calculateNetworth  : {bat "mvn -fcalculateNetworth/pom.xml clean compile"},
+                    authorizationService  : {bat "mvn -fauthorizationService/pom.xml clean compile"},
+                    viewController  : {bat "mvn -fviewController/pom.xml clean compile"}
                 )
         }
     }
