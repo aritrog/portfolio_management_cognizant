@@ -31,9 +31,13 @@ pipeline {
 
           stage('package stage') {
               steps {
-               
-                bat "mvn -fDailySharePrice/pom.xml package"
-              
+               parallel(
+                    DailySharePrice : {bat "mvn -fDailySharePrice/pom.xml package"},
+                    DailyMutualFundNAV : {bat "mvn -fDailyMutualFundNAV/pom.xml package"},
+                    calculateNetworth  : {bat "mvn -fcalculateNetworth/pom.xml package"},
+                    authorizationService  : {bat "mvn -fauthorizationService/pom.xml package"},
+                    viewController  : {bat "mvn -fviewController/pom.xml package"}
+                )
         }
     }
 
