@@ -7,7 +7,10 @@ pipeline {
     stages {
         stage('Compile stage') {
             steps {
-                bat "mvn -fDailySharePrice/pom.xml clean compile"
+                parallel(
+                    DailySharePrice : {bat "mvn -fDailySharePrice/pom.xml clean compile"},
+                    DailyMutualFundNAV : {bat "mvn -fDailyMutualFundNAV/pom.xml clean compile"}
+                )
         }
     }
 
