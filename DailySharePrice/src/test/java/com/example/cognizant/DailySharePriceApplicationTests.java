@@ -25,7 +25,7 @@ class DailySharePriceApplicationTests {
 	 private MockMvc mvc;
 
 	  @Test
-	    public void testGetDailySharePriceByID() throws Exception {
+	    void testGetDailySharePriceByID() throws Exception {
 	        ResultActions actions = mvc.perform(get("/dailySharePrice/share1,share2"));
 	        actions.andExpect(status().isOk());
 	        

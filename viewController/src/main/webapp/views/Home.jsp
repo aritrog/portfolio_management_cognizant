@@ -87,7 +87,7 @@
 				<div class="col">
 					<center>
 						<p class="p-4 pr-5 ">
-							Copyright ï¿½ 2021 <a href="#"
+							Copyright © 2021 <a href="#"
 								style="text-decoration: none; color: black">| CodeCrunchers</a>.
 						</p>
 					</center>
